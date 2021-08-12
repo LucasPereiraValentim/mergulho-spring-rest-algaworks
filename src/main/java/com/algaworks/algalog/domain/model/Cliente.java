@@ -28,7 +28,7 @@ public class Cliente {
 	@Size(max = 60)
 	private String nome;
 	
-	@NotBlank
+	@NotBlank(message = "Não pode ser vázio")
 	@Email
 	@Size(max = 255)
 	private String email;
