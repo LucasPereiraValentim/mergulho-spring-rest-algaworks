@@ -16,6 +16,10 @@ public class CRUDClienteService {
 	
 	private ClienteRepository clienteRepository;
 	
+	public Cliente buscar(Long cleinteId) {
+		return clienteRepository.findById(cleinteId).get();
+	}
+	
 	@Transactional// deve ser executado dentro de uma transação
 	public Cliente salvar(Cliente cliente) {
 		
