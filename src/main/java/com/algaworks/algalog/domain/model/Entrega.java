@@ -19,10 +19,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.validation.groups.ConvertGroup;
-import javax.validation.groups.Default;
 
-import com.algaworks.algalog.domain.exception.ValidationGroups;
+import com.algaworks.algalog.domain.exception.NegocioException;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -46,7 +44,6 @@ public class Entrega implements Serializable{
 	@Valid
 	@ManyToOne(optional = false)
 	@NotNull
-	@ConvertGroup(from = Default.class, to = ValidationGroups.ClienteId.class)
 	private Cliente cliente;
 	
 	@Valid
@@ -80,5 +77,17 @@ public class Entrega implements Serializable{
 		this.getOcorrencias().add(ocorrencia);
 		
 		return ocorrencia;
+	}
+
+	public void finalizar() {
+		
+		if (!this.getStatus().equals(StatusEntrega.PENDENTE)) {
+			throw new NegocioException("Entrega não pode ser finalizada");
+		} else {
+			this.setStatus(StatusEntrega.FINALIZADA);
+			this.setDataFinazalicao(OffsetDateTime.now());
+		}
+		
+		
 	}
 }
