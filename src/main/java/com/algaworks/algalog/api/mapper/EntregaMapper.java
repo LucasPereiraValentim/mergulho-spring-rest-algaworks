@@ -1,4 +1,4 @@
-package com.algaworks.algalog.mapper;
+package com.algaworks.algalog.api.mapper;
 
 import java.util.ArrayList;
 import java.util.List;

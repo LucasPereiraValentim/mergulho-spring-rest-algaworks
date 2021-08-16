@@ -1,4 +1,4 @@
-package com.algaworks.algalog.domain.model.repository;
+package com.algaworks.algalog.domain.repository;
 
 import java.util.List;
 import java.util.Optional;
